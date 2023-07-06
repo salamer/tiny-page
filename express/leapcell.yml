@@ -1,0 +1,4 @@
+build: 
+  script: build.sh
+start: npm run start
+port: 8000
