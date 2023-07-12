@@ -14,7 +14,7 @@ app.get("/app", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-app.get("hello", (req: Request, res: Response) => {
+app.get("/hello", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server, hello leapcell.io");
 });
 
