@@ -7,14 +7,17 @@ const app: Express = express();
 const port = 8000;
 
 app.get("/", (req: Request, res: Response) => {
+  console.log("req", req)
   res.send("Express + TypeScript Server");
 });
 
 app.get("/app", (req: Request, res: Response) => {
+  console.log("req", req)
   res.send("Express + TypeScript Server");
 });
 
 app.get("/hello", (req: Request, res: Response) => {
+  console.log("req", req)
   res.send("Express + TypeScript Server, hello leapcell.io");
 });
 
