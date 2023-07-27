@@ -1,23 +1,20 @@
-FROM node:16-alpine
+FROM 347191758818.dkr.ecr.us-east-1.amazonaws.com/script-basic:js_v5
 
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-RUN npm i -g pnpm
-COPY . ${APP_HOME}/
-# COPY js-api ${APP_HOME}/js-api
-# RUN cd ${APP_HOME}/js-api && pnpm install
-# RUN cd ${APP_HOME}/js-api && pnpm run build
-# # # COPY *.json ${APP_HOME}/
-# # COPY pages ${APP_HOME}/pages
-# # COPY public ${APP_HOME}/public
-# # # COPY *.js ${APP_HOME}
-# # # COPY * ${APP_HOME}
-# # # COPY src ${APP_HOME}/src
-# RUN  pnpm install
-# RUN  pnpm link ${APP_HOME}/js-api
-# RUN  pnpm install --save axios
-RUN  cd ${APP_HOME} && pnpm tsc
-RUN  cd ${APP_HOME} && pnpm run build
+RUN mkdir -p /app/output
+WORKDIR /app/output
 
-EXPOSE 3000 16800 16801
-ENTRYPOINT npm run start
+ADD . /app/output
+
+RUN echo 'installing nodejs dependencies'
+RUN npm install
+
+RUN echo 'running build script build.sh'
+RUN sh build.sh
+
+EXPOSE 3000
+ENV AWS_LWA_PORT 3000
+ENV PORT 3000
+
+ENV NODE_ENV=production
+
+CMD ./run.sh
