@@ -1,4 +1,4 @@
 build: 
   script: build.sh
-start: npm run start
+start: ./run.sh
 port: 3000
